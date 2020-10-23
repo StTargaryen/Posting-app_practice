@@ -1,29 +1,60 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './post-list-item.css';
 
-const PostListItem = ({label, important = false}) => {
+export default class PostListItem extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            important: false,
+            liked: false,
 
-    let classNames = 'app-list-item d-flex justify-content-between';
-    if (important) {
-        classNames += ' important'
+        };
+        this.onImportant = this.onImportant.bind(this);
+        this.onLiked = this.onLiked.bind(this);
     }
 
-    return (
-        <div className={classNames}>
-            <span className="app-list-item-label">
-                {label}
-            </span>
-            <div className="d-flex justyfy-content-center align-item-center">
-                <button type="button" className="btn-star btn-sm">
-                    <i className="fa fa-star"></i>
-                </button>
-                <button type="button" className="btn-trash btn-sm">
-                    <i className="fa fa-trash-o"></i>
-                </button>
-                <i className="fa fa-heart"></i>
-            </div>
-        </div>
-    )
-}
+    onImportant() {
+        this.setState(({important})=>({
+            important: !important
+        }))        
+    }
+    onLiked() {
+        this.setState(({liked})=>({
+            liked: !liked
+        }))        
+    }
 
-export default PostListItem;
+    render() {
+        const {label} = this.props;
+        const {important, liked} = this.state;
+
+        let classNames = 'app-list-item d-flex justify-content-between';
+        if (important) {
+            classNames += ' important'
+        }
+        if (liked) {
+            classNames += ' like'
+        }
+
+        return (
+            <div className={classNames}>
+                <span className="app-list-item-label"
+                    onClick={this.onLiked}>
+                    {label}
+                </span>
+                <div className="d-flex justyfy-content-center align-item-center">
+                    <button 
+                        type="button" 
+                        className="btn-star btn-sm"
+                        onClick={this.onImportant}>
+                        <i className="fa fa-star"></i>
+                    </button>
+                    <button type="button" className="btn-trash btn-sm">
+                        <i className="fa fa-trash-o"></i>
+                    </button>
+                    <i className="fa fa-heart"></i>
+                </div>
+            </div>
+        )
+    }
+};

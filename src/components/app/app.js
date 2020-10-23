@@ -10,9 +10,9 @@ import './app.css'
 const App = () => {
 
     const data = [
-        {label:'Going to leart JavaScript', important: true},
-        {label:'Going to leart React', important: false},
-        {label:'Going to leart Vue', important: false},
+        {id: 'fag', label:'Going to leart React', important: false},
+        {id: 'nig', label:'Going to leart JavaScript', important: true},
+        {id: 'cia', label:'Going to leart Vue', important: false},
     ];
 
     return (
