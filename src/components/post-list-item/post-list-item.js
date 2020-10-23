@@ -39,7 +39,7 @@ export default class PostListItem extends Component {
         return (
             <div className={classNames}>
                 <span className="app-list-item-label"
-                    onClick={this.onLiked}>
+                    onDoubleClick={this.onLiked}>
                     {label}
                 </span>
                 <div className="d-flex justyfy-content-center align-item-center">
